@@ -4,6 +4,16 @@
 
    <?php include 'include.php' ?>
    <link rel='stylesheet' type='text/css' href='index.css'>
+   <link rel="stylesheet" type="text/css" href="quill/examples/styles/style.css">
+   <link rel="stylesheet" type="text/css" href="quill/quill.base.css">
+   <script type="text/javascript" src="quill/quill.js"></script>
+
+   <!-- <script src="bselector/js/bootstrap-select.js"></script> -->
+
+   <script>
+      $('.selectpicker').selectpicker();
+   </script>
+
 </head>
 <body>
    <?php
