@@ -30,10 +30,8 @@
             echo "</form>";
             echo "<script>document.frm.submit();</script>";
          }
-         else {
+         else
             echo "<script>alert('wrong login');</script>";
-
-         }
       }
 
    ?> 
