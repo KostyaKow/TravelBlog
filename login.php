@@ -1,5 +1,12 @@
 <html>
 <head>
+   <script src='//code.jquery.com/jquery-1.11.3.min.js'></script>
+   <script src='//code.jquery.com/jquery-migrate-1.2.1.min.js'></script>
+   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+
+
+   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
+   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css">
 
 </head>
 <body>
@@ -36,14 +43,32 @@
 
    ?> 
 
+   <div class="container">
 
-   <center>
+      <form class="form-signin" method='post' action='login.php'>
+         <h2 class="form-signin-heading">Please sign in</h2>
+         <label for="inputEmail" class="sr-only">Username</label>
+         <!--<input type="email" name='name' class="form-control" placeholder=" address" required autofocus> -->
+         <input type="text" name='name' class="form-control" placeholder=" Username" required autofocus>
+         <label for="inputPassword" class="sr-only">Password</label>
+         <input type="password" name='pass' class="form-control" placeholder="Password" required>
+         <!--<div class="checkbox">
+            <label>
+               <input type="checkbox" value="remember-me"> Remember me
+            </label>
+         </div>-->
+         <button class="btn btn-lg btn-primary btn-block" value='login' type="submit">Sign in</button>
+      </form>
+
+   </div> <!-- /container -->
+
+<!--   <center>
       <form method='post' action='login.php'>
-         Username: <input name='name' type='text'></input>
+         Username: <input name='name' type='text'></input></br>
          Password: <input name='pass' type='password'></input>
          <input type='submit' value='login'>
       </form>
-   </center>
+   </center> -->
 
 </body>
 </html>
