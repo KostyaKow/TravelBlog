@@ -2,12 +2,11 @@
 <head>
    <title>Ira's blog</title>
 
-   <?php include 'include.php' ?>
+   <?php include 'include.php'; ?>
    <link rel='stylesheet' type='text/css' href='index.css'>
    <link rel="stylesheet" type="text/css" href="quill/examples/styles/style.css">
    <link rel="stylesheet" type="text/css" href="quill/quill.base.css">
    <script type="text/javascript" src="quill/quill.js"></script>
-
    <!-- <script src="bselector/js/bootstrap-select.js"></script> -->
 
    <script>
@@ -17,15 +16,23 @@
 </head>
 <body>
    <?php
-      if (isset($_POST['t1'])) {
-         $token = $_POST['t1'];
+      if (!isset($checked))
+         include 'check_pass.php';
 
-         if ($token != 'gentoo-rms42stalmman69') {
-            echo '<h2>ERROR: bad token</h2>';
-         }
-         else {
-            include 'admin-real42.php';
-         }
+   ?>
+   <script>
+      function Kadmin(action) {
+         post_with_redirect("admin.php", {"super_secret_3va3":"gentoo-rms42stalmman69", "t1":action});
+      }
+   </script>
+   <?php
+      function Kadmin($action) {
+         echo '<script>Kadmin("' + $action + '");</script>';
+      }
+
+      if (isset($_POST['t1'])) {
+         $action = $_POST['t1'];
+         include 'admin-real42.php';
       }
       else
          echo '<h1>Hello! Looks like you reached an empty page</h1>';

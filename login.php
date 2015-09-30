@@ -1,13 +1,7 @@
 <html>
 <head>
-   <script src='//code.jquery.com/jquery-1.11.3.min.js'></script>
-   <script src='//code.jquery.com/jquery-migrate-1.2.1.min.js'></script>
-   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
 
-
-   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
-   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css">
-
+   <?php include 'include.php'; ?>
 </head>
 <body>
    <div id='top-panel'> </div>
@@ -32,10 +26,13 @@
             $context  = stream_context_create($options);
             $result = file_get_contents($url, false, $context);
             var_dump($result);*/
+      
             echo "<form action='admin.php' method='post' name='frm'>";
-            echo "   <input type='hidden' name='t1' value='gentoo-rms42stalmman69'>";
+            echo "   <input type='hidden' name='t1' value='main'>";
+            echo "   <input type='hidden' name='super_secret_3va3' value='gentoo-rms42stalmman69'>";
             echo "</form>";
             echo "<script>document.frm.submit();</script>";
+            //echo '<script>post("admin.php", {"super_secret_3va3":"gentoo-rms42stalmman69"</script>';
          }
          else
             echo "<script>alert('wrong login');</script>";
@@ -48,7 +45,6 @@
       <form class="form-signin" method='post' action='login.php'>
          <h2 class="form-signin-heading">Please sign in</h2>
          <label for="inputEmail" class="sr-only">Username</label>
-         <!--<input type="email" name='name' class="form-control" placeholder=" address" required autofocus> -->
          <input type="text" name='name' class="form-control" placeholder=" Username" required autofocus>
          <label for="inputPassword" class="sr-only">Password</label>
          <input type="password" name='pass' class="form-control" placeholder="Password" required>
@@ -57,18 +53,10 @@
                <input type="checkbox" value="remember-me"> Remember me
             </label>
          </div>-->
-         <button class="btn btn-lg btn-primary btn-block" value='login' type="submit">Sign in</button>
+         <center><button style='width:30%' class="btn btn-lg btn-primary btn-block" value='login' type="submit">Sign in</button></center>
       </form>
 
    </div> <!-- /container -->
-
-<!--   <center>
-      <form method='post' action='login.php'>
-         Username: <input name='name' type='text'></input></br>
-         Password: <input name='pass' type='password'></input>
-         <input type='submit' value='login'>
-      </form>
-   </center> -->
 
 </body>
 </html>
