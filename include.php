@@ -7,3 +7,9 @@
 <link rel='stylesheet' href='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css'>
 <link rel='stylesheet' href='https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css'>
 <script src='network-code.js'></script>
+
+<link rel='stylesheet' href='quill/quill.base.css'>
+<link rel='stylesheet' href='quill/quill.snow.css'>
+<link rel='stylesheet' href='quill/styles/style.css'>
+<link rel='stylesheet' href='quill/styles/advanced.css'>
+
