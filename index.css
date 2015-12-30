@@ -1,13 +1,17 @@
 
-#side-panel {
+#country-list {
    background-color: #E9E9E9;
    list-style-type:  none;
    margin:           0;
-   padding:          0;
+   padding:          5px;
    height:           100%;
    width:            15%;
-   display:          block;
+   /*display:          block;*/
    float:            left;
+}
+
+.top-panel {
+   /*float:            right;*/
 }
 
 body {
@@ -25,7 +29,7 @@ body {
 #top-pic {
    width:            100%;
    height:           800px;
-/*   height:           100px; */
+/* height:           100px; */
    margin:           -400px 0 0 0;
 }
 

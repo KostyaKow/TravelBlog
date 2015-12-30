@@ -9,6 +9,7 @@
 
    if (!$good_pass) {
       echo '<h2>ERROR: bad token</h2><!--';
-      throw new Exception('Bad request');
+      //throw new Exception('Bad request');
+      exit();
    }
 ?>

@@ -49,23 +49,38 @@
         <li class="list-group-item">Very long blog title</li>
         <li class="list-group-item">Vestibulum at eros</li>
       </ul>
-         <?php 
-            //echo '<table><tbody><tr>sdf</tr><tr>Country</tr></tbody></table>';
-         ?> 
+            <!-- echo '<table><tbody><tr>sdf</tr><tr>Country</tr></tbody></table>'; -->
       </div>
 
       <!--<button type='button' class='btn btn-success' onclick='Kadmin("add_blog")'>New Blog Entry</button>-->
    <?php }
 
-   function adminAddBlog() {
-      echo 'Country: <input type="text"></input>';
+   function adminAddBlog() { ?>
+      Country: <input type="text"></input>
 
-      echo "<div id='text-editor' style='width: 400px; height: 400px;'>";
-      $doc = new DOMDocument();
-      $doc->loadHTMLFile('quill/examples/index.html');
-      echo $doc->saveHTML(); 
-      echo "</div>";
-   }
+      <div id='text-editor' style='width: 400px; height: 400px;'>
+
+      <?php
+         $doc = new DOMDocument();
+         $doc->loadHTMLFile('quill/examples/index.html');
+         echo $doc->saveHTML(); 
+         echo "</div>";
+      ?>
+
+      <button onclick='submit_blog()'>Submit KK left here</button> 
+
+      <script>
+         function submit_blog() {
+            var to_submit = {
+               'title' :      'Hello, World!',
+               'countries' :  ['Us', 'Russia'],
+               'data' :       editor.getHTML(),
+               'super_secret_3va3' : 'gentoo-rms42stalmman69'
+            }
+            post('upload.php', to_submit);
+         }
+      </script>
+   <?php }
 
    if (!isset($action))
       adminMainPanel();

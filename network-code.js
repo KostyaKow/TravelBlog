@@ -35,7 +35,7 @@ function post_old(url, data) {
   var respo= xmlhttp.responseText;
   document.getElementById("some_id").innerHTML = xmlhttp.responseText;
 }
-
+//no redirect
 function post(url, data) {
    console.log(url);
    console.log(data);

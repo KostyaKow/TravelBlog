@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <title>title</title>
+    <script src="http://cdnjs.cloudflare.com/ajax/libs/gsap/1.18.0/TweenLite.min.js"></script>
+    <script src="http://cdnjs.cloudflare.com/ajax/libs/gsap/1.18.0/plugins/CSSPlugin.min.js"></script>
+    <script src="http://cdnjs.cloudflare.com/ajax/libs/gsap/1.18.0/plugins/CSSRulePlugin.min.js"></script>
+    <!-- <link href='css/fake.css' rel='stylesheet' type='text/css'> -->
+     <style>
+      #icon{
+        height:25px;
+        background-color: red;
+        width:20px;
+      }
+    </style>
+  </head>
+  <body onload="">
+
+    <div id="icon"></div>
+
+    <script>
+      function switchMode() {
+        navCSS = CSSRulePlugin.getRule("#icon");
+        alert(navCSS);
+        TweenLite.to(navCSS, 0.3, {cssRule:{height:"200px"}});
+      }
+    </script>
+
+    <button id='test' onclick='switchMode()'>
+    </button>
+  </body>
+</html>
