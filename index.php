@@ -2,34 +2,35 @@
 <head>
    <title>Ira's blog</title>
    <link rel='stylesheet' type='text/css' href='index.css'>
-   <script src='//code.jquery.com/jquery-1.11.3.min.js'></script>
-   <script src='//code.jquery.com/jquery-migrate-1.2.1.min.js'></script>
-   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+   <script src='https://code.jquery.com/jquery-2.2.0.js'></script>
 
+   <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
+   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+   <script src='index.js'></script>
 
    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css">
 </head>
-<body>
+<body ng-app='iraBlog' ng-controller='iraBlog'>
+
    <!-- <span class="glyphicon glyphicon-search" aria-hidden="true"></span> -->
    <div id='top-pic-div'>
       <img id='top-pic' src='top-pic.jpg'></img>
    </div>
 
-   <ul id='country-list' class="list-group">
-      <!-- This is where we will place countries 
-      <li class="list-group-item">
-         <span class="badge">4</span>
-         Europe
-      </li> -->
+   <ul id='country-list'>
+      <li class='country-item list-group-item' ng-repeat='c in countries' ng-click='countrySelect(c)'>
+         <span class='badge'>{{c.count}}</span>
+         <a>{{c.name}}</a>
+      </li>
    </ul>
 
-   <div class='top-panel'>
+   <!--<div class='top-panel'>
       This is a top panel.
-   <div>
+   <div>-->
 
    <div id='mainpage-content' style='padding:30px;text-align:center;'>
-      Website
+      Hello and welcome to my website!
    </div>
 
    <script>
@@ -48,6 +49,7 @@
    </script>
 
    <?php
+      /*
       $data_path = '/root/nginx-html/ira/data/';
 
       $countries = array();
@@ -76,6 +78,7 @@
       echo '</script>';
 
       //print_r($countries);
+      */
    ?>
 </body>
 </html>
