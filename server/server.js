@@ -9,23 +9,58 @@ app.use(bodyParser.json());
 /*app.use(bodyParser.urlencoded({
    extended: true
 }));*/
+
 function onErr(err) {
    if (err) console.log(err);
+}
+
+var dataDir = '../data/';
+
+function getPosts() {
+   var postFileNames = fs.readdirSync(dataDir);
+  
+   var posts = [];
+ 
+   for (postDate in postFileNames) {
+      var postStr = fs.readFileSync(dataDir + postFileNames[postDate]);
+      var postJson = JSON.parse(postStr);
+      var date = postFileNames[postDate].substring(4);
+      postJson['date'] = date;
+      posts.push(postJson);
+      console.log(postJson);
+   }
+   return posts;
 }
 
 app.get('/ira/serv', function(req, res) {
    res.set('Access-Control-Allow-Origin', '*');
    //console.log(req);
    //console.log(req.body);
+   var response = null;
 
    var query = req.query;
-   if (query.data == 'countryCount')
-      console.log('getting country count');
+   if (query.data == 'getPosts') {
+      var posts = getPosts();
 
-   var response = [
+      /*var countries = {};
+
+      for (i in posts) {
+         var post = posts[i];
+         var postCountries = post['countries'];
+         for (i in postCountries) {
+            var ctrName = postCountries[i];
+            if (countries[ctrName] == undefined)
+               countries[ctrName] = 1;
+            else countries[ctrName] += 1;
+         }
+      }*/
+      response = countries;
+   }
+
+   /*var response = [
       {'name': 'US', 'count': 1},
       {'name': 'Russia', 'count': 5}
-   ];
+   ];*/
    /*response = [
       {'first':'Helen', 'last':'Cabanillas', 'country':'Peru'},
       {'first':'Kostyantyn', 'last':'Kovalskyy', 'country':'Ukraine'},
@@ -35,7 +70,6 @@ app.get('/ira/serv', function(req, res) {
    //var data = fs.readFileSync('../data/post1449271171');
    /*var data = fs.readdirSync('../data/');
    response = data + '';*/
-
     
 
    //res.send(200, response);
