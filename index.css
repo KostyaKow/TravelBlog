@@ -38,22 +38,32 @@ body {
    cursor:           pointer;
 }
 
-
 /* remove outline box around navigation tabs */
 a, a:focus, a:visited, a:active {
     outline: none !important;
 }
 
 #mainpage-content {
-   padding:    5px;
-   text-align: center;
-   width:      85%; /* 100 - side menu */
-   float:      right;
+   padding:          10px;
+   /*text-align:       center;*/
+   width:            85%; /* 100 - side menu */
+   float:            right;
    /*display:    inline-block;*/
+   background-color: #f1f1f1;
+   height:           100%;
 }
 
-.previewPost {
-   border-style:  solid;
+.post-preview {
+   padding:          10px;
+   margin-top:       10px;
+   background-color: #fefefe;
 }
 
+.preview-date {
+   color:            #7c7676;
+}
+
+.preview-title {
+   margin:           5px;
+}
 

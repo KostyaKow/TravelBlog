@@ -18,10 +18,6 @@ function getCountryCounts(postList) {
    return countryCounts;
 }
 
-function formatPostDate(post) {
-   return formatJsDate(post['date']*1000);
-}
-
 function getPreviewList(postList) {
    var sortedPosts = sort(postList, (posta, postb) => {
       var d1 = posta['date'], d2 = postb['date'];
@@ -45,6 +41,9 @@ app.controller('iraBlog', function($scope, $http, $sce) {
 
    $scope.showSort = true;
 
+   //maybe Month day, year (December 5, 2015)
+   $scope.formatPostDate = (post) => formatJsDate(post['date']*1000);
+
    //request specific data from server   
    $scope.getData = function (dataToGet, callBack) {
       var req_url =  serv_url + '?data=' + dataToGet;
@@ -60,9 +59,22 @@ app.controller('iraBlog', function($scope, $http, $sce) {
 
       $scope.previewList = getPreviewList(postList);
 
+      /*<div ng-repeat='x in posts'>
+       * blah
+       * <div ng-bind-html='x.htmlSafeData'>{{x.htmlSafeData}}</div>
+       *</div> */
+      for (x in $scope.posts) {
+         var data = $scope.posts[x].data;
+         data = $sce.trustAsHtml(data);
+         $scope.posts[x].htmlSafeData = data;
+      }
+
       for (x in $scope.previewList) {
-         $scope.previewList[x].htmlSafeData =
-            $sce.trustAsHtml($scope.previewList[x].data);
+         var data = $scope.previewList[x].data;
+         data = data.replace(/<\/?[^>]+(>|$)/g, "");
+         //data = $(data).text();
+         data = $sce.trustAsHtml(data);
+         $scope.previewList[x].data = data;
       }
 
       /*$scope.previewList.map(function (x) {

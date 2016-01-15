@@ -38,20 +38,24 @@
 
    <div id='mainpage-content'>
       <!-- Hello and welcome to my website! -->
-      <!-- <ul ng-if='showSort' id='sortBy' class="nav nav-tabs">
+      <ul ng-if='showSort' id='sortBy' class="nav nav-tabs">
         <li class="active"><a href="#">Newest</a></li>
         <li><a href="#">Oldest</a></li>
         <li><a href="#">Most viewed</a></li>
-      </ul> -->
+      </ul>
 
       <div id='blogContentContainer'>
-         <div class='previewPost' ng-repeat='x in previewList'>
+         <div class='post-preview' ng-repeat='x in previewList'>
             <!--{{previewList[x]['title']}} -->
             <div>
-               <b><h3>{{ x['title'] }}</h3></b>
-               <div ng-bind-html='x.htmlSafeData'>
-                  {{ x.htmlSafeData }}
-               </div>
+               <b>
+                  <span class='preview-date'>{{ formatPostDate(x) }}</span>
+                  <h3 class='preview-title'>{{ x['title'] }}</h3>
+               </b>
+               <span class='preview-data'>
+                  {{ x.data }}
+               </span>
+               ... <a>Read more</a>
             </div>
          </div>
       </div>
