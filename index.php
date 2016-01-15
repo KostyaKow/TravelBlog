@@ -48,7 +48,7 @@
          <div class='previewPost' ng-repeat='x in previewList'>
             <!--{{previewList[x]['title']}} -->
             <div>
-               <h1>{{ x['title'] }}</h1>
+               <b><h3>{{ x['title'] }}</h3></b>
                <div ng-bind-html='x.htmlSafeData'>
                   {{ x.htmlSafeData }}
                </div>

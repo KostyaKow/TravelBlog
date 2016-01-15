@@ -8,6 +8,7 @@
    width:            15%;
    /*display:          block;*/
    float:            left;
+   /*display:          inline-block; */
 }
 
 .top-panel {
@@ -46,6 +47,9 @@ a, a:focus, a:visited, a:active {
 #mainpage-content {
    padding:    5px;
    text-align: center;
+   width:      85%; /* 100 - side menu */
+   float:      right;
+   /*display:    inline-block;*/
 }
 
 .previewPost {
