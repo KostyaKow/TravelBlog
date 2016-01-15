@@ -36,3 +36,20 @@ body {
 .country-item {
    cursor:           pointer;
 }
+
+
+/* remove outline box around navigation tabs */
+a, a:focus, a:visited, a:active {
+    outline: none !important;
+}
+
+#mainpage-content {
+   padding:    5px;
+   text-align: center;
+}
+
+.previewPost {
+   border-style:  solid;
+}
+
+

@@ -16,70 +16,49 @@ function onErr(err) {
 
 var dataDir = '../data/';
 
-function getPosts() {
+function getBlogPosts() {
    var postFileNames = fs.readdirSync(dataDir);
   
    var posts = [];
  
    for (postDate in postFileNames) {
       var postStr = fs.readFileSync(dataDir + postFileNames[postDate]);
-      var postJson = JSON.parse(postStr);
+      var postJson = JSON.parse(postStr); //JSON.stringify()
       var date = postFileNames[postDate].substring(4);
       postJson['date'] = date;
       posts.push(postJson);
-      console.log(postJson);
+      //console.log(postJson);
    }
    return posts;
 }
 
+function onReq(req) {
+   console.log('request: ' + req.sessionID);
+}
+
 app.get('/ira/serv', function(req, res) {
    res.set('Access-Control-Allow-Origin', '*');
+   //onReq(req);
+
    //console.log(req);
    //console.log(req.body);
    var response = null;
 
    var query = req.query;
-   if (query.data == 'getPosts') {
-      var posts = getPosts();
+   if (query.data == 'getBlogPosts') {
+      var posts = getBlogPosts();
 
-      /*var countries = {};
-
-      for (i in posts) {
-         var post = posts[i];
-         var postCountries = post['countries'];
-         for (i in postCountries) {
-            var ctrName = postCountries[i];
-            if (countries[ctrName] == undefined)
-               countries[ctrName] = 1;
-            else countries[ctrName] += 1;
-         }
-      }*/
-      response = countries;
+      response = posts;
    }
 
-   /*var response = [
-      {'name': 'US', 'count': 1},
-      {'name': 'Russia', 'count': 5}
-   ];*/
-   /*response = [
-      {'first':'Helen', 'last':'Cabanillas', 'country':'Peru'},
-      {'first':'Kostyantyn', 'last':'Kovalskyy', 'country':'Ukraine'},
-      {'first':'Tony', 'last':'Klimov', 'country':'USA'},
-      {'first':'Ira', 'last':'Klimov', 'country':'Ukraine'}
-   ];*/
-   //var data = fs.readFileSync('../data/post1449271171');
-   /*var data = fs.readdirSync('../data/');
-   response = data + '';*/
-    
-
-   //res.send(200, response);
-   res.status(200).send(response);
+   res.status(200).send(response); //res.send(200, response);
 });
 
 
 app.post('/ira/serv', function(req, res) {
+   /*console.log('request: ' + req.sessionID);
    console.log(req.body);
-   fs.writeFile('/tmp/test', req.body, onErr);
+   fs.writeFile('/tmp/test', req.body, onErr);*/
 });
 
 app.listen(1342);
