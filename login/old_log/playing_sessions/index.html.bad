@@ -1,0 +1,32 @@
+<html>
+<head>
+   <script src='https://code.jquery.com/jquery-2.2.0.js'></script>
+
+</head>
+
+<body>
+   <button id='becomeAdmin'>Become admin</button>
+
+   are we admin: <div id='isAdmin'></div>
+
+   <script>
+   $(function() {
+      var serv = 'http://forty7.guru';
+
+      $('#becomeAdmin').click(() => {
+         $.post(serv + '/ira/admin');
+         checkAdmin();
+      });
+
+      function checkAdmin() {
+         $.get(serv + '/ira/admin', (res) => {
+            $('#isAdmin').html(res);
+            alert(res);
+         });
+      }
+      checkAdmin();
+   });
+   </script>
+
+</body>
+</html>
