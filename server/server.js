@@ -45,10 +45,17 @@ app.get('/ira/serv', function(req, res) {
    var response = null;
 
    var query = req.query;
+   
    if (query.data == 'getBlogPosts') {
       var posts = getBlogPosts();
-
       response = posts;
+   }
+   else if (query.data == 'getCountryCounts') {
+      var countries = getCountriesCounts();
+      response = countries;
+   }
+   else if (query.data == 'getPreviews') {
+      var page = query.page;
    }
 
    res.status(200).send(response); //res.send(200, response);

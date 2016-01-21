@@ -3,3 +3,4 @@
 *.swp
 *.psd
 node_modules/
+server/serv.log

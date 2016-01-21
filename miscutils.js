@@ -63,4 +63,7 @@ function cmpNums(a, b) {
 
 //alert(sort([3, 2, 1, 6, 4], cmpNums));
 
+function isStr(x) {
+   return x instanceof String || typeof x === 'string';
+}
 
