@@ -128,7 +128,6 @@ app.get('/ira/serv', function(req, res) {
    //console.log(req);
    //console.log(req.body);
    var response = null;
-
    
    if (query.data == 'getBlogPosts') {
       var posts = getBlogPosts();
