@@ -10,11 +10,21 @@ app.use(bodyParser.json());
    extended: true
 }));*/
 
+//0 = none (don't do this). 1 = normal logging. 2 = debug logs
+var debugSrv = 3;
+var dataDir = '../data/';
+
+if (debugSrv >= 1)
+   console.log('==server restart');
+
+
 function onErr(err) {
    if (err) console.log(err);
 }
-
-var dataDir = '../data/';
+function onReq(req) {
+   if (debugSrv >= 1)
+      console.log('request: ' + req.sessionID);
+}
 
 function getBlogPosts() {
    var postFileNames = fs.readdirSync(dataDir);
@@ -27,14 +37,16 @@ function getBlogPosts() {
       var date = postFileNames[postDate].substring(4);
       postJson['date'] = date;
       posts.push(postJson);
-      //console.log(postJson);
+      if (debugSrv >= 2)
+         console.log(postJson);
    }
    return posts;
 }
 
-function onReq(req) {
-   console.log('request: ' + req.sessionID);
+function getCountriesCounts() {
+   //var posts =
 }
+
 
 app.get('/ira/serv', function(req, res) {
    res.set('Access-Control-Allow-Origin', '*');
