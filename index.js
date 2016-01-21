@@ -1,37 +1,5 @@
-var serv_url = 'http://forty7.guru/ira/serv'
+var serv_url = 'http://forty7.guru/ira/'
 
-
-// returns [{'name':x, 'count':x}]
-function getCountryCounts(postList) {
-   var countryCounts = {};
-
-   for (i in postList) {
-      var post = postList[i];
-      var postCountries = post['countries'];
-      for (i in postCountries) {
-         var ctrName = postCountries[i];
-         if (countryCounts[ctrName] == undefined)
-            countryCounts[ctrName] = 1;
-         else countryCounts[ctrName] += 1;
-      }
-   }
-   return countryCounts;
-}
-
-function getPreviewList(postList) {
-   var sortedPosts = sort(postList, (posta, postb) => {
-      var d1 = posta['date'], d2 = postb['date'];
-      if (d1 == d2) return 0;
-      if (d1 < d2) return 1;
-      if (d1 > d2) return 2;
-   });
-   /*for (x in sortedPosts)
-      alert(formatPostDate(sortedPosts[x]));*/
-  /* var postsDates = map(postList, (post) => post['date']);
-   var sortedDates = sort(postsDates, cmpNums);
-   return sortedDates;*/
-   return sortedPosts;
-}
 
 var app = angular.module('iraBlog', []);
 app.controller('iraBlog', function($scope, $http, $sce) {
@@ -44,14 +12,6 @@ app.controller('iraBlog', function($scope, $http, $sce) {
    //maybe Month day, year (December 5, 2015)
    $scope.formatPostDate = (post) => formatJsDate(post['date']*1000);
 
-   //old getData
-   /*$scope.getData = function (dataToGet, callBack) {
-      var req_url =  serv_url + '?data=' + dataToGet;
-      $http.get(req_url).then(function (data) {
-         callBack(data.data);
-      });
-   };*/
-
    //internal get request
    $scope._getRaw = function(req_str, callback) {
       $http.get(req_str).then((data) => callback(data));
@@ -60,7 +20,7 @@ app.controller('iraBlog', function($scope, $http, $sce) {
    //if dataToget is string, send serv?data=blah,
    //otherwise we need dictionary of parameters
    $scope.getData = function (dataToGet, callback) {
-      var req_str = serv_url + '?';
+      var req_str = serv_url + 'serv?';
 
       if (isStr(dataToGet)) {
          req_str += 'data=' + dataToGet;
@@ -77,13 +37,24 @@ app.controller('iraBlog', function($scope, $http, $sce) {
       $scope._getRaw(req_str, callback);
    };
 
+
+   //setup page data
+   $scope.getData('getCountryCounts',
+                  (res) => $scope.countryCounts = res.data);
+
+   var previewReqOptions = {
+      'data'         : 'getPreviews',
+      'page'         : 0,
+      'sortReverse'  : false,
+      'sortType'     : 'date' //'date' or 'views'
+   };
+   $scope.getData(previewReqOptions,
+                  (res) => $scope.previewList = res.data);
+
    //[{'title':x, 'countries':[x], 'data':'x', 'date':'x'}]
    $scope.getData('getBlogPosts', (data) => {
       var postList = data.data;
       $scope.posts = postList;
-      $scope.countryCounts = getCountryCounts(postList);
-
-      $scope.previewList = getPreviewList(postList);
 
       /*<div ng-repeat='x in posts'>
        * blah
@@ -108,18 +79,16 @@ app.controller('iraBlog', function($scope, $http, $sce) {
       });*/
    });
 
-   /*[{'name': 'US', 'count': 1},
-      {'name': 'Russia', 'count': 5}
-   ];*/
+   $scope.countrySelect = (country) => alert('selecting country '+country);
 
-   $scope.countrySelect = function(country) {
-
+   $scope.openPost = (name) => {
+      window.open(serv_url + 'blogEntry' + '?page=' + name);
    }
-
 });
 
-$(() => {
 
+//top navigation window.
+$(() => {
    $('#topNav a').click((event) => {
       $('#topNav li').removeClass('active');
       var name = $(event.target).text(); //var name = $(this).text();
@@ -127,4 +96,4 @@ $(() => {
    });
 
 });
-//$('#sortBy
+//$('#sortBy')

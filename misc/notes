@@ -1,3 +1,10 @@
+TODO:
+   -Implement paging work
+   -instead of getBlogPosts every time, store
+    it in global variable. (session or something?)
+   -check length of request, and if too long
+    then  return
+
 login.php = admin login (ira, pass)
 admin-real42.php = real admin stuff
 

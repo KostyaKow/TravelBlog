@@ -6,6 +6,7 @@
 
    <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+   <script>notInNode = true;</script>
    <script src='miscutils.js'></script>
    <script src='index.js'></script>
 
@@ -26,7 +27,7 @@
    </div>
 
    <ul id='country-list'>
-      <li class='country-item list-group-item' ng-repeat='(name, count) in countryCounts' ng-click='countrySelect(c)'>
+      <li class='country-item list-group-item' ng-repeat='(name, count) in countryCounts' ng-click='countrySelect(name)'>
          <a>{{name}}</a>
          <span class='badge'>{{count}}</span>
       </li>
@@ -55,7 +56,10 @@
                <span class='preview-data'>
                   {{ x.data }}
                </span>
-               ... <a>Read more</a>
+               ...
+               <a href='javascript:void(0)' ng-click="openPost(x['date'])">
+                  Read more
+               </a>
             </div>
          </div>
       </div>

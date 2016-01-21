@@ -67,3 +67,7 @@ function isStr(x) {
    return x instanceof String || typeof x === 'string';
 }
 
+if (typeof notInNode === 'undefined') {
+   module.exports.sort = sort;
+   module.exports.cmpNums = cmpNums;
+}
