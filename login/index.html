@@ -28,14 +28,14 @@
    <div id='content'>
 
       <div id='Pages' class='admin-page'>
-         <div id='tags'></div>
-         <div id='blogPosts'></div>
+         <ul id='tagList' class='list-group-item'></ul>
+         <div id='blogPosts' class='list-group-item'></div>
 
-         <div ng-app='addBlog' ng-controller='addBlog'>
-            <input type='text'></input>
-         </div>
+         <button onclick='$("#content-container").removeClass("hidden")'>
+            Add new blog entry
+         </button>
 
-          <div id="content-container">
+          <div id="content-container" class='hidden'>
             <div class="advanced-wrapper">
               <div class="toolbar-container"><span class="ql-format-group">
                   <select title="Font" class="ql-font">

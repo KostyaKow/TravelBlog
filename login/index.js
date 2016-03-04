@@ -28,13 +28,27 @@ function loadPage(name) {
       getBlogPosts();
 }
 
-function getBlogPosts() {
+function getBlogPosts(tag) {
+   if (typeof tag == null)
+      var tag = null;
+
    var entriesList = $('#entriesList');
 
-   getData('getBlogPosts', (postList) => {
-      for (var post in postList)
-         ;//alert(post);
+   getData('getBlogPosts', (posts) => {
+      var blogPostsHtml = '';
 
+      for (var i in posts) {
+         var post = posts[i];
+         blogPostsHtml += `${post.title}:${post.date}`;
+      }
+      $('#blogPosts').html(blogPostsHtml);
+   });
+
+   getData('getTagCounts', (tags) => {
+      var tagsHtml = 'all</br>';
+      for (var tag in tags)
+         tagsHtml += `${tag}:${tags[tag]}</br>`;
+      $('#tagList').html(tagsHtml);
    });
 }
 
