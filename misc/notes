@@ -1,4 +1,10 @@
 TODO:
+   -Tags
+   -Statistics
+   -Gallery
+   -Comments
+
+TODO:
    -Implement paging work
    -instead of getBlogPosts every time, store
     it in global variable. (session or something?)
