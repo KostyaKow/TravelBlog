@@ -1,7 +1,10 @@
 var serv_url = 'http://forty7.guru/ira/';
 
+//internal get request
 function _rawGet(url, callback) {
    $.get(url, callback);
+   //angular version:
+   //$http.get(req_str).then((data) => callback(data));
 }
 
 //request specific data from server
