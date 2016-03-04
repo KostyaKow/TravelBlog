@@ -7,6 +7,7 @@
       <link rel='stylesheet' href='style.css'>
 
       <script src='../deps/jquery2.min.js'></script>
+      <script src='../common.js'></script>
       <script src='index.js'></script>
       <!-- <script src='../deps/angular.min.js'></script>-->
       <script src='../deps/bootstrap.min.js'></script>
@@ -18,13 +19,17 @@
    <body>
 
    <ul id='sidepanel' class='list-group-item'>
-      <li class='selected'>Pages</li>
+      <li>Pages</li>
       <li>Statistics</li>
       <li>Gallery</li>
       <li>Comments</li>
    </ul>
 
    <div id='content'>
+
+      <div id='entriesList'>
+
+      </div>
 
       <div ng-app='addBlog' ng-controller='addBlog'>
          <input type='text'></input>
