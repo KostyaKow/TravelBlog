@@ -9,6 +9,11 @@ $(document).ready(() => {
    });
 
    loadPage('Pages'); //default
+
+   $('#add-blog-entry').click(() => {
+      //$("#content-container").toggleClass("hidden");
+      loadPage('Editor');
+   });
 });
 
 function loadPage(name) {
@@ -34,21 +39,62 @@ function getBlogPosts(tag) {
 
    var entriesList = $('#entriesList');
 
+   getData('getTagCounts', (tags) => {
+      var tagsHtml = '<li><a>all</a></li>';
+      for (var tag in tags) {
+         var count = tags[tag];
+         var tagHtml = '<li><a>' + tag + '</a>';
+         tagHtml += "<span>" + count + '</span></li>';
+         tagsHtml += tagHtml;
+      }
+      $('#tag-list').html(tagsHtml);
+      $('#tag-list li').addClass('list-group-item');
+      $('#tag-list li span').addClass('badge');
+
+      $('#tag-list li').click(function() {
+         getBlogPosts($(this).find('a').text());
+      });
+   });
+
    getData('getBlogPosts', (posts) => {
       var blogPostsHtml = '';
 
       for (var i in posts) {
          var post = posts[i];
-         blogPostsHtml += `${post.title}:${post.date}`;
+         var date = formatJsDate(post.date * 1000);
+         var tags = post.tags;
+
+         //check that the tag is good
+         var displayEntry = false;
+         if (tag == null || tag == 'all')
+            displayEntry = true;
+         else {
+            for (var i in tags) {
+               if (tags[i] == tag)
+                  displayEntry = true;
+            }
+         }
+         if (!displayEntry)
+            continue;
+         //tag
+
+         var title = post.title;
+         if (title.length > 20)
+            title = title.substring(0, 20) + '...';
+
+         var postHtml = '<li><button>edit</button>';
+         postHtml += date + ' ' + title;
+         for (var i in tags) {
+            postHtml += '<span class="badge">' + tags[i] + '</span>';
+         }
+         postHtml += '</li>';
+
+         blogPostsHtml += postHtml;
       }
-      $('#blogPosts').html(blogPostsHtml);
+      $('#blog-posts').html(blogPostsHtml);
+      $('#blog-posts li').addClass('list-group-item');
+      $('#blog-posts li button').addClass('edit-post-btn');
    });
 
-   getData('getTagCounts', (tags) => {
-      var tagsHtml = 'all</br>';
-      for (var tag in tags)
-         tagsHtml += `${tag}:${tags[tag]}</br>`;
-      $('#tagList').html(tagsHtml);
-   });
 }
 

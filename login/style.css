@@ -9,24 +9,59 @@ body {
    background-color:    #e9e9e9;
    list-style-type:     none;
    margin:              0;
-   position:            absolute;
    height:              100%;
    width:               15%;
-   float:               left;
-}
-
-#sidepanel li {
-   cursor:              pointer;
+   padding:             0;
+   position:            absolute;
 }
 
 #content {
-   float:               right;
+   width:               84%;
+   height:              100%;
+   position:            absolute;
+   left:                16%;
+   padding-top:         3%;
 }
 
+#tag-list {
+   position:            absolute;
+   width:               25%;
+   left:                75%;
+}
+#blog-posts {
+   position:            absolute;
+   width:               70%;
+}
+.edit-post-btn {
+   margin-right:        15px;
+   border-radius:       5%;
+   border:              0;
+   background-color:    #00cc00;
+}
+
+
+#add-blog-entry {
+   /*position:            absolute;
+   left:                80%;
+   top:                 35%;*/
+   margin-bottom:       10px;
+   border-radius:       5%;
+   height:              30px;
+   width:               150px;
+   border:              0;
+   background-color:    #53c7ed;
+}
+
+#content-container {
+   z-index:             9999 !important;
+}
+
+.list-group-item {
+   cursor:              pointer;
+}
 .selected {
    background-color:    #aaaaaa !important;
 }
-
 .hidden {
    display:             none;
 }
