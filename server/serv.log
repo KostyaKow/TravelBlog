@@ -2,67 +2,28 @@
 request: undefined
 request: undefined
 request: undefined
+TypeError: miscutils.sort is not a function
+    at getPreviewList (/usr/share/nginx/html/ira/server/server.js:91:32)
+    at /usr/share/nginx/html/ira/server/server.js:144:25
+    at Layer.handle [as handle_request] (/usr/share/nginx/html/ira/server/node_modules/express/lib/router/layer.js:95:5)
+    at next (/usr/share/nginx/html/ira/server/node_modules/express/lib/router/route.js:131:13)
+    at Route.dispatch (/usr/share/nginx/html/ira/server/node_modules/express/lib/router/route.js:112:3)
+    at Layer.handle [as handle_request] (/usr/share/nginx/html/ira/server/node_modules/express/lib/router/layer.js:95:5)
+    at /usr/share/nginx/html/ira/server/node_modules/express/lib/router/index.js:277:22
+    at Function.process_params (/usr/share/nginx/html/ira/server/node_modules/express/lib/router/index.js:330:12)
+    at next (/usr/share/nginx/html/ira/server/node_modules/express/lib/router/index.js:271:10)
+    at jsonParser (/usr/share/nginx/html/ira/server/node_modules/body-parser/lib/types/json.js:100:40)
 request: undefined
 request: undefined
-request: undefined
-request: undefined
-request: undefined
-request: undefined
-request: undefined
-request: undefined
-request: undefined
-request: undefined
-request: undefined
-request: undefined
-request: undefined
-request: undefined
-request: undefined
-request: undefined
-request: undefined
-request: undefined
-request: undefined
-request: undefined
-request: undefined
-request: undefined
-request: undefined
-request: undefined
-request: undefined
-request: undefined
-request: undefined
-request: undefined
-request: undefined
-request: undefined
-request: undefined
-request: undefined
-request: undefined
-request: undefined
-request: undefined
-request: undefined
-request: undefined
-request: undefined
-request: undefined
-request: undefined
-request: undefined
-request: undefined
-request: undefined
-request: undefined
-request: undefined
-request: undefined
-request: undefined
-request: undefined
-request: undefined
-request: undefined
-request: undefined
-request: undefined
-request: undefined
-request: undefined
-request: undefined
-request: undefined
-request: undefined
-request: undefined
-request: undefined
-request: undefined
-request: undefined
-request: undefined
-request: undefined
+TypeError: miscutils.sort is not a function
+    at getPreviewList (/usr/share/nginx/html/ira/server/server.js:91:32)
+    at /usr/share/nginx/html/ira/server/server.js:144:25
+    at Layer.handle [as handle_request] (/usr/share/nginx/html/ira/server/node_modules/express/lib/router/layer.js:95:5)
+    at next (/usr/share/nginx/html/ira/server/node_modules/express/lib/router/route.js:131:13)
+    at Route.dispatch (/usr/share/nginx/html/ira/server/node_modules/express/lib/router/route.js:112:3)
+    at Layer.handle [as handle_request] (/usr/share/nginx/html/ira/server/node_modules/express/lib/router/layer.js:95:5)
+    at /usr/share/nginx/html/ira/server/node_modules/express/lib/router/index.js:277:22
+    at Function.process_params (/usr/share/nginx/html/ira/server/node_modules/express/lib/router/index.js:330:12)
+    at next (/usr/share/nginx/html/ira/server/node_modules/express/lib/router/index.js:271:10)
+    at jsonParser (/usr/share/nginx/html/ira/server/node_modules/body-parser/lib/types/json.js:100:40)
 request: undefined

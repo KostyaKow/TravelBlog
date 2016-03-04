@@ -37,11 +37,11 @@ function reqReturn(res, response) {
 //end global callbacks
 
 ///REQUEST HANDLERS
-//[{'title':x, 'countries':[x], 'data':'x', 'date':'x'}]
+//[{'title':x, 'tags':[x], 'data':'x', 'date':'x'}]
 function getBlogPosts() {
    var postFileNames = fs.readdirSync(dataDir);
    var posts = [];
- 
+
    for (postDate in postFileNames) {
       var postStr = fs.readFileSync(dataDir + postFileNames[postDate]);
       var postJson = JSON.parse(postStr); //JSON.stringify()
@@ -55,21 +55,21 @@ function getBlogPosts() {
 }
 
 // returns [{'name':x, 'count':x}]
-function getCountryCounts() {
+function getTagCounts() {
    var postList = getBlogPosts();
-   var countryCounts = {};
+   var tagCounts = {};
 
    for (i in postList) {
       var post = postList[i];
-      var postCountries = post['countries'];
-      for (i in postCountries) {
-         var ctrName = postCountries[i];
-         if (countryCounts[ctrName] == undefined)
-            countryCounts[ctrName] = 1;
-         else countryCounts[ctrName] += 1;
+      var postTags = post['tags'];
+      for (i in postTags) {
+         var tagName = postTags[i];
+         if (tagCounts[tagName] == undefined)
+            tagCounts[tagName] = 1;
+         else tagCounts[tagName] += 1;
       }
    }
-   return countryCounts;
+   return tagCounts;
 }
 
 
@@ -78,13 +78,13 @@ function truncatePostForPreview(entryContent) {
    var maxChars = 80;
    var truncated = entryContent.substring(0, maxChars);
    var splitted = truncated.split(' ');
-   
+
    var previewArr = splitted.slice(0, numWords);
    var preview = previewArr.join(' ');
    return preview;
 }
 
-//[{'title':x, 'countries':[x], 'data':preview, 'date':'x'}]
+//[{'title':x, 'tags':[x], 'data':preview, 'date':'x'}]
 function getPreviewList(pageNum, sortReverse, sortType) {
    var postList = getBlogPosts();
 
@@ -100,10 +100,10 @@ function getPreviewList(pageNum, sortReverse, sortType) {
    // var postsDates = map(postList, (post) => post['date']);
    // var sortedDates = sort(postsDates, cmpNums);
    // return sortedDates;
-   
+
    for (x in sortedPosts) {
       var post = sortedPosts[x];
-      sortedPosts[x].data = truncatePostForPreview(post.data);      
+      sortedPosts[x].data = truncatePostForPreview(post.data);
    }
    return sortedPosts;
 }
@@ -113,7 +113,7 @@ function getPreviewList(pageNum, sortReverse, sortType) {
 app.get('/ira/blogEntry', function(req, res) {
    var query = onReq(req, res);
    var postDate = query.page;
-   
+
    var postPath = dataDir + '/post' + postDate;
    var postJson = JSON.parse(fs.readFileSync(postPath));
    var postHtml = postJson.data;
@@ -128,14 +128,14 @@ app.get('/ira/serv', function(req, res) {
    //console.log(req);
    //console.log(req.body);
    var response = null;
-   
+
    if (query.data == 'getBlogPosts') {
       var posts = getBlogPosts();
       response = posts;
    }
-   else if (query.data == 'getCountryCounts') {
-      var countries = getCountryCounts();
-      response = countries;
+   else if (query.data == 'getTagCounts') {
+      var tags = getTagCounts();
+      response = tags;
    }
    else if (query.data == 'getPreviews') {
       var pageNum = query.page;
