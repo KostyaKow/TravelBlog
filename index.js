@@ -3,7 +3,7 @@ var serv_url = 'http://forty7.guru/ira/'
 
 var app = angular.module('iraBlog', []);
 app.controller('iraBlog', function($scope, $http, $sce) {
-   $scope.countryCounts = [];
+   $scope.tagCounts = [];
    $scope.previewList = [];
    //$scope.posts = [];
 
@@ -21,8 +21,8 @@ app.controller('iraBlog', function($scope, $http, $sce) {
    }
 
    //setup page data
-   getData('getCountryCounts',
-           (res) => $scope.countryCounts = res );
+   getData('getTagCounts',
+           (res) => $scope.tagCounts = res );
 
    var previewReqOptions = {
       'data'         : 'getPreviews',
@@ -33,7 +33,7 @@ app.controller('iraBlog', function($scope, $http, $sce) {
    $scope.getData(previewReqOptions,
                   (res) => $scope.previewList = res);
 
-   //[{'title':x, 'countries':[x], 'data':'x', 'date':'x'}]
+   //[{'title':x, 'tags':[x], 'data':'x', 'date':'x'}]
    $scope.getData('getBlogPosts', (postList) => {
       $scope.posts = postList;
 
@@ -60,7 +60,7 @@ app.controller('iraBlog', function($scope, $http, $sce) {
       });*/
    });
 
-   $scope.countrySelect = (country) => alert('selecting country '+country);
+   $scope.tagSelect = (tag) => alert('selecting tag ' + tag);
 
    $scope.openPost = (name) => {
       window.open(serv_url + 'blogEntry' + '?page=' + name);

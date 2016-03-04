@@ -26,9 +26,9 @@
       <img id='top-pic' src='top-pic.jpg'></img>
    </div>
 
-   <ul id='country-list'>
-      <li class='country-item list-group-item'
-          ng-repeat='(name, count) in countryCounts' ng-click='countrySelect(name)'>
+   <ul id='tag-list'>
+      <li class='tag-item list-group-item'
+          ng-repeat='(name, count) in tagCounts' ng-click='tagSelect(name)'>
          <a>{{name}}</a>
          <span class='badge'>{{count}}</span>
       </li>

@@ -26,3 +26,7 @@ body {
 .selected {
    background-color:    #aaaaaa !important;
 }
+
+.hidden {
+   display:             none;
+}
