@@ -12,35 +12,17 @@ app.controller('iraBlog', function($scope, $http, $sce) {
    //maybe Month day, year (December 5, 2015)
    $scope.formatPostDate = (post) => formatJsDate(post['date']*1000);
 
-   //internal get request
-   $scope._getRaw = function(req_str, callback) {
-      $http.get(req_str).then((data) => callback(data));
+   $scope.getData = (dataToGet, callback) => {
+      var callbackApply = (data) => {
+         callback(data);
+         $scope.$apply();
+      };
+      getData(dataToGet, callbackApply);
    }
-   //request specific data from server
-   //if dataToget is string, send serv?data=blah,
-   //otherwise we need dictionary of parameters
-   $scope.getData = function (dataToGet, callback) {
-      var req_str = serv_url + 'serv?';
-
-      if (isStr(dataToGet)) {
-         req_str += 'data=' + dataToGet;
-         $scope._getRaw(req_str, callback);
-         return;
-      }
-      var needAndSign = false;
-      for (var paramName in dataToGet) {
-         if (needAndSign)
-            req_str += '&';
-         req_str += paramName + '=' + dataToGet[paramName];
-         needAndSign = true;
-      }
-      $scope._getRaw(req_str, callback);
-   };
-
 
    //setup page data
-   $scope.getData('getCountryCounts',
-                  (res) => $scope.countryCounts = res.data);
+   getData('getCountryCounts',
+           (res) => $scope.countryCounts = res );
 
    var previewReqOptions = {
       'data'         : 'getPreviews',
@@ -49,11 +31,10 @@ app.controller('iraBlog', function($scope, $http, $sce) {
       'sortType'     : 'date' //'date' or 'views'
    };
    $scope.getData(previewReqOptions,
-                  (res) => $scope.previewList = res.data);
+                  (res) => $scope.previewList = res);
 
    //[{'title':x, 'countries':[x], 'data':'x', 'date':'x'}]
-   $scope.getData('getBlogPosts', (data) => {
-      var postList = data.data;
+   $scope.getData('getBlogPosts', (postList) => {
       $scope.posts = postList;
 
       /*<div ng-repeat='x in posts'>

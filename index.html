@@ -2,16 +2,16 @@
 <head>
    <title>Ira's blog</title>
    <link rel='stylesheet' type='text/css' href='index.css'>
-   <script src='https://code.jquery.com/jquery-2.2.0.js'></script>
+   <script src='deps/jquery2.min.js'></script>
+   <script src='deps/angular.min.js'></script>
 
-   <script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
-   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
    <script>notInNode = true;</script>
-   <script src='miscutils.js'></script>
+   <script src='common.js'></script>
    <script src='index.js'></script>
 
-   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css">
-   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap-theme.min.css">
+   <script src='deps/bootstrap.min.js'></script>
+   <link rel="stylesheet" href="deps/bootstrap.min.css">
+   <link rel="stylesheet" href="deps/bootstrap-theme.min.css">
 </head>
 <body ng-app='iraBlog' ng-controller='iraBlog'>
 
@@ -27,7 +27,8 @@
    </div>
 
    <ul id='country-list'>
-      <li class='country-item list-group-item' ng-repeat='(name, count) in countryCounts' ng-click='countrySelect(name)'>
+      <li class='country-item list-group-item'
+          ng-repeat='(name, count) in countryCounts' ng-click='countrySelect(name)'>
          <a>{{name}}</a>
          <span class='badge'>{{count}}</span>
       </li>
