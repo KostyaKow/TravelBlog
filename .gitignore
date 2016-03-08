@@ -4,3 +4,4 @@
 *.psd
 node_modules/
 serv.log
+bundle.js

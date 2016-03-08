@@ -9,7 +9,7 @@ app.use(bodyParser.json());
 /*app.use(bodyParser.urlencoded({
    extended: true
 }));*/
-var miscutils = require('../miscutils.js');
+var miscutils = require('../common.js');
 
 //INIT (when server re-starts)
 //0 = none/fatal (don't do this). 1 = normal logging. 2 = debug logs

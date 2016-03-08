@@ -1,4 +1,6 @@
-
+var jscloak = require('jscloak');
+var jutils = jscloak.utils;
+var s = jutils.sprintf;
 
 $(document).ready(() => {
    var adminOpts = $('#sidepanel li');
@@ -43,8 +45,8 @@ function getBlogPosts(tag) {
       var tagsHtml = '<li><a>all</a></li>';
       for (var tag in tags) {
          var count = tags[tag];
-         var tagHtml = '<li><a>' + tag + '</a>';
-         tagHtml += "<span>" + count + '</span></li>';
+         var tagHtml = s('<li><a>%s</a> <span>%i</span></li>',
+                         tag, count);
          tagsHtml += tagHtml;
       }
       $('#tag-list').html(tagsHtml);
@@ -83,10 +85,9 @@ function getBlogPosts(tag) {
             title = title.substring(0, 20) + '...';
 
          var postHtml = '<li><button>edit</button>';
-         postHtml += date + ' ' + title;
-         for (var i in tags) {
-            postHtml += '<span class="badge">' + tags[i] + '</span>';
-         }
+         postHtml += s('%s %s', date, title);
+         for (var i in tags)
+            postHtml += s('<span class="badge">%s</span>', tags[i]);
          postHtml += '</li>';
 
          blogPostsHtml += postHtml;

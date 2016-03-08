@@ -3,6 +3,7 @@ TODO:
    -Statistics
    -Gallery
    -Comments
+   -Last modified
 
 TODO:
    -Implement paging work
@@ -10,6 +11,11 @@ TODO:
     it in global variable. (session or something?)
    -check length of request, and if too long
     then  return
+
+in login:
+   npm install jscloak
+   npm install -g browserify
+   browserify index.js >bundle.js
 
 login.php = admin login (ira, pass)
 admin-real42.php = real admin stuff
