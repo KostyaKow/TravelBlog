@@ -33,8 +33,11 @@ advancedEditor.on('selection-change', function(range) {
 });
 
 advancedEditor.on('text-change', function(delta, source) {
-   console.log(delta.toSource());
-   console.log(source.toSource());
+   /*console.log('delta' + delta.toSource());
+   console.log('source' + source);*/
+   //advancedEditor.getContents();
+   window.quillText = advancedEditor.getHTML();
+   console.log(quillText);
 });
 /*advancedEditor.on('text-change', function(delta, source) {
   var sourceDelta, targetDelta;

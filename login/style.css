@@ -38,12 +38,11 @@ body {
    border:              0;
    background-color:    #00cc00;
 }
-
-
 #add-blog-entry {
    /*position:            absolute;
    left:                80%;
    top:                 35%;*/
+   margin-left:         40px;
    margin-bottom:       10px;
    border-radius:       5%;
    height:              30px;
@@ -51,6 +50,47 @@ body {
    border:              0;
    background-color:    #53c7ed;
 }
+
+/*editor*/
+#editor-title, #editor-tags {
+   border:              1px solid #aaaaaa;
+   width:               50%;
+   margin-left:         3%;
+   overflow:            hidden;
+   background-color:    #ffffff;
+}
+#editor-tags-input {
+   border:              0;
+   float:               left;
+
+}
+#display-tags {
+   float:               right;
+   display:             inline;
+}
+#editor-title {
+   width:               50%;
+}
+.remove-tag-btn {
+   color:               #aaaaaa;
+   cursor:              pointer;
+   padding-left:        3px;
+}
+.remove-tag-btn:hover {
+   color:               #ffffff;
+   text-decoration:     none;
+}
+
+#upload-post-btn {
+   margin-left:         40px;
+   margin-bottom:       10px;
+   border-radius:       5%;
+   height:              30px;
+   width:               150px;
+   border:              0;
+   background-color:    #53c7ed;
+}
+/*end editor*/
 
 #content-container {
    z-index:             9999 !important;

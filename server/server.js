@@ -126,7 +126,8 @@ app.get('/ira/serv', function(req, res) {
    var query = onReq(req, res);
 
    //console.log(req);
-   //console.log(req.body);
+   //console.log(query);
+   console.log('query: ' + JSON.stringify(query));
    var response = null;
 
    if (query.data == 'getBlogPosts') {
@@ -146,6 +147,19 @@ app.get('/ira/serv', function(req, res) {
    }
    else if (query.data == 'getBlogPostByDate') {
 
+   }
+   else if (query.action == 'uploadBlogPost') {
+      var post = {
+         'title'  : query.title,
+         'tags'   : JSON.parse(query.tags),
+         'data'   : query.data
+      };
+      var postData = JSON.stringify(post);
+      var date = Date.now(); //new Date;
+      var fName = dataDir + 'post' + date;
+      fs.writeFile(fName, postData);
+
+      console.log('Uploading new blog');
    }
    reqReturn(res, response);
 });
