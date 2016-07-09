@@ -63,9 +63,31 @@ app.controller('iraBlog', function($scope, $http, $sce) {
       });*/
    });
 
-   $scope.tagSelect = (tag) => alert('selecting tag ' + tag);
+   $scope.curr_tag = null;
+
+   $scope.tagSelect = (tagName) => {
+      $('.tag-item').removeClass('active').find('a').css('color', '#337ab7');
+      var tagId = '#tag-' + tagName;
+      $(tagId).addClass('active');
+
+      $(tagId).find('a').css('color', 'white');
+
+      if (tagName == "none")
+         $scope.curr_tag = null;
+      else
+         $scope.curr_tag = tagName;
+   }
 
    $scope.openPost = openPost;
+
+   $scope.orderPosts = (p) => {
+      //alert(p);
+      return p.date;
+   };
+   $scope.filterPosts = (p) => {
+
+   };
+
 });
 
 
@@ -95,7 +117,7 @@ $(() => {
 
 //$('#sortBy')
 //middle click for "Read more"
-$(document).ready(function() {
+/*$(document).ready(function() {
    setTimeout(function() {
       $('.read-more').on('mousedown', function(e) {
          e.preventDefault();
@@ -103,6 +125,6 @@ $(document).ready(function() {
          openPost(openDate);
       });
    }, 500);
-});
+});*/
 
 

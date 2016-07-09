@@ -28,7 +28,10 @@
       </div>
 
       <ul id='tag-list'>
-         <li class='tag-item list-group-item'
+         <li class='tag-item list-group-item' id='tag-none' ng-click='tagSelect("none")'>
+            <a>Show All</a>
+         </li>
+         <li class='tag-item list-group-item' id='tag-{{name}}'
              ng-repeat='(name, count) in tagCounts' ng-click='tagSelect(name)'>
             <a>{{name}}</a>
             <span class='badge'>{{count}}</span>
@@ -46,7 +49,8 @@
          </ul>
 
          <div id='blogContentContainer'>
-            <div class='post-preview' ng-repeat='x in previewList'>
+            <div class='post-preview'
+                  ng-repeat='x in previewList | orderBy:orderPosts | filter:filterPosts'>
                <!--{{previewList[x]['title']}} -->
                <div>
                   <b>
@@ -58,7 +62,7 @@
                   </span>
                   ...
                   <!--<a class='read-more' href='#' ng-click="openPost(x['date'])">Read more</a>-->
-                  <a class='read-more' href='#' p-date="{{ x['date'] }}">Read more</a>
+                  <a class='read-more' target='_blank' href='blogEntry?page={{x["date"]}}' p-date="{{ x['date'] }}">Read more</a>
                </div>
             </div>
          </div>
@@ -70,7 +74,7 @@
    </div>
 
    <div id='pageAbout'>
-      <img src='images/misha_ira_wedding.jpg' style='float:right;padding-right:10px;'/>
+      <img src='images/misha_ira_wedding.jpg' style='float:right;padding:15px;'/>
 
       Hello, and welcome to my blog! My name is Iryna, and I'm an awesome mom of 3 kids.</br>
 
