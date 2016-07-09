@@ -42,7 +42,7 @@ function fixMonth(n) {
    return n + 1;
 }
 function formatJsDate(milli) {
-   var d = new Date(milli);
+   var d = new Date(milli/1000);
    var dayName = dayNumToName(d.getDay()) + ' ';
    var year = fixYear(d.getYear());
    var month = fixMonth(d.getMonth());

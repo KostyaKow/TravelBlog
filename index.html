@@ -21,49 +21,63 @@
      <li id='AboutLi'><a href="#">About</a></li>
    </ul>
 
-   <!-- <span class="glyphicon glyphicon-search" aria-hidden="true"></span> -->
-   <div id='top-pic-div'>
-      <img id='top-pic' src='top-pic.jpg'></img>
-   </div>
+   <div id='pageHome'>
+      <!-- <span class="glyphicon glyphicon-search" aria-hidden="true"></span> -->
+      <div id='top-pic-div'>
+         <img id='top-pic' src='images/main_top_pic.jpg'></img>
+      </div>
 
-   <ul id='tag-list'>
-      <li class='tag-item list-group-item'
-          ng-repeat='(name, count) in tagCounts' ng-click='tagSelect(name)'>
-         <a>{{name}}</a>
-         <span class='badge'>{{count}}</span>
-      </li>
-   </ul>
-
-   <!--<div class='top-panel'>
-      This is a top panel.
-   <div>-->
-
-   <div id='mainpage-content'>
-      <!-- Hello and welcome to my website! -->
-      <ul ng-if='showSort' id='sortBy' class="nav nav-tabs">
-        <li class="active"><a href="#">Newest</a></li>
-        <li><a href="#">Oldest</a></li>
-        <li><a href="#">Most viewed</a></li>
+      <ul id='tag-list'>
+         <li class='tag-item list-group-item'
+             ng-repeat='(name, count) in tagCounts' ng-click='tagSelect(name)'>
+            <a>{{name}}</a>
+            <span class='badge'>{{count}}</span>
+         </li>
       </ul>
 
-      <div id='blogContentContainer'>
-         <div class='post-preview' ng-repeat='x in previewList'>
-            <!--{{previewList[x]['title']}} -->
-            <div>
-               <b>
-                  <span class='preview-date'>{{ formatPostDate(x) }}</span>
-                  <h3 class='preview-title'>{{ x['title'] }}</h3>
-               </b>
-               <span class='preview-data'>
-                  {{ x.data }}
-               </span>
-               ...
-               <a href='javascript:void(0)' ng-click="openPost(x['date'])">
-                  Read more
-               </a>
+      <!--<div class='top-panel'>This is a top panel.<div>-->
+
+      <div id='mainpage-content'>
+         <!-- Hello and welcome to my website! -->
+         <ul ng-if='showSort' id='sortBy' class="nav nav-tabs">
+           <li class="active"><a href="#">Newest</a></li>
+           <li><a href="#">Oldest</a></li>
+           <li><a href="#">Most viewed</a></li>
+         </ul>
+
+         <div id='blogContentContainer'>
+            <div class='post-preview' ng-repeat='x in previewList'>
+               <!--{{previewList[x]['title']}} -->
+               <div>
+                  <b>
+                     <span class='preview-date'>{{ formatPostDate(x) }}</span>
+                     <h3 class='preview-title'>{{ x['title'] }}</h3>
+                  </b>
+                  <span class='preview-data'>
+                     {{ x.data }}
+                  </span>
+                  ...
+                  <!--<a class='read-more' href='#' ng-click="openPost(x['date'])">Read more</a>-->
+                  <a class='read-more' href='#' p-date="{{ x['date'] }}">Read more</a>
+               </div>
             </div>
          </div>
       </div>
+   </div>
+
+   <div id='pageGallery'>
+      TODO: gallery
+   </div>
+
+   <div id='pageAbout'>
+      <img src='images/misha_ira_wedding.jpg' style='float:right;padding-right:10px;'/>
+
+      Hello, and welcome to my blog! My name is Iryna, and I'm an awesome mom of 3 kids.</br>
+
+      I like to travel, and learn about cultures of various tribes. I'm very interested in South American culture, and recently visited Peru.
+
+      </br></br>
+      This blog was created by my son, and you can find his other stuff <a href='https://github.com/rpasta42' target='_blank'>here</a>.
    </div>
 
 </body>

@@ -11,7 +11,7 @@ body {
    margin:           0;
    padding:          5px;
    height:           100%;
-   width:            15%;
+   width:            25%; /*15%;*/
    /*display:          block;*/
    float:            left;
    /*display:          inline-block; */
@@ -46,7 +46,7 @@ a, a:focus, a:visited, a:active {
 #mainpage-content {
    padding:          10px;
    /*text-align:       center;*/
-   width:            85%; /* 100 - side menu */
+   width:            75%; /*if tags is 15%: 85%;*/ /* 100 - side menu */
    float:            right;
    /*display:    inline-block;*/
    background-color: #f1f1f1;
@@ -66,4 +66,14 @@ a, a:focus, a:visited, a:active {
 .preview-title {
    margin:           5px;
 }
+
+.hidden {
+   display: none;
+}
+
+#pageAbout {
+   padding: 10px;
+}
+
+
 

@@ -1,5 +1,8 @@
 var serv_url = 'http://forty7.guru/ira/'
 
+function openPost(name) {
+   window.open(serv_url + 'blogEntry' + '?page=' + name);
+}
 
 var app = angular.module('iraBlog', []);
 app.controller('iraBlog', function($scope, $http, $sce) {
@@ -62,19 +65,44 @@ app.controller('iraBlog', function($scope, $http, $sce) {
 
    $scope.tagSelect = (tag) => alert('selecting tag ' + tag);
 
-   $scope.openPost = (name) => {
-      window.open(serv_url + 'blogEntry' + '?page=' + name);
-   }
+   $scope.openPost = openPost;
 });
 
 
 //top navigation window.
 $(() => {
-   $('#topNav a').click((event) => {
+   function hideAllPages() {
+      $('#pageHome,#pageAbout,#pageGallery').addClass('hidden');
+   }
+
+   hideAllPages();
+   onNavClick("Home");
+
+   function onNavClick(pageName) {
+      hideAllPages();
       $('#topNav li').removeClass('active');
-      var name = $(event.target).text(); //var name = $(this).text();
-      $('#' + name + 'Li').addClass('active');
+      $('#' + pageName + 'Li').addClass('active');
+      $('#page' + pageName).removeClass('hidden');
+   }
+
+   $('#topNav a').click((event) => {
+      var pageName = $(event.target).text(); //var name = $(this).text();
+      onNavClick(pageName);
    });
 
 });
+
+
 //$('#sortBy')
+//middle click for "Read more"
+$(document).ready(function() {
+   setTimeout(function() {
+      $('.read-more').on('mousedown', function(e) {
+         e.preventDefault();
+         var openDate = $(this).attr('p-date');
+         openPost(openDate);
+      });
+   }, 500);
+});
+
+
