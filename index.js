@@ -61,15 +61,19 @@ app.controller('iraBlog', function($scope, $http, $sce) {
       /*$scope.previewList.map(function (x) {
          return trustAsHtml(x);
       });*/
+      $scope.tagSelect("none");
+      $scope.sortSelect("newest");
    });
 
    $scope.curr_tag = null;
+   $scope.sort_by = "newest";
 
    $scope.tagSelect = (tagName) => {
-      $('.tag-item').removeClass('active').find('a').css('color', '#337ab7');
+      $('.tag-item').removeClass('active')
+                    .find('a').css('color', '#337ab7');
+
       var tagId = '#tag-' + tagName;
       $(tagId).addClass('active');
-
       $(tagId).find('a').css('color', 'white');
 
       if (tagName == "none")
@@ -78,14 +82,29 @@ app.controller('iraBlog', function($scope, $http, $sce) {
          $scope.curr_tag = tagName;
    }
 
-   $scope.openPost = openPost;
+   $scope.sortSelect = (sortType) => {
+      $('.sort-type').removeClass('active');
+      $('#sort-type-' + sortType).addClass('active');
+      $scope.sort_by = sortType;
+   };
 
    $scope.orderPosts = (p) => {
       //alert(p);
-      return p.date;
-   };
-   $scope.filterPosts = (p) => {
+      var ord = $scope.sort_by;
 
+      if (ord == "newest")
+         return -p.date;
+      else if (ord == "oldest")
+         return p.date;
+      else
+         return p.views;
+      //return p.date;
+   };
+
+   $scope.filterPosts = (post, index, arr) => {
+      var tag = $scope.curr_tag;
+      if (tag == null || ($.inArray(tag, post.tags) != -1)) return true;
+      return false;
    };
 
 });
