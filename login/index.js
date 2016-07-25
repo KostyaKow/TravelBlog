@@ -14,7 +14,7 @@ $(document).ready(() => {
    });
 
    loadPage('Pages'); //default
-   editorOpen(); //kk debug deleteme
+   //editorOpen(); //kk debug deleteme
 
    $('#add-blog-entry').click(() => {
       editorOpen();
@@ -49,12 +49,17 @@ window.quillText = null;
 window.removeTag = function(i) {
    $('#tag-' + i).html('');
 };
+g_posts = null;
 
 function editorInit() {
    if (initEditor) return;
    initEditor = true;
 
    $('#editor-title').attr('placeholder', 'Enter Title');
+
+   $('#delete-post-btn').click(() => {
+      //getData({'action' : 'deletePost'},
+   });
 
    $('#upload-post-btn').click(() => {
       var tags = [];
@@ -65,6 +70,7 @@ function editorInit() {
       });
 
       var uploadPost = {
+         'originDate' : getEditingPostName(),
          'action' : 'uploadBlogPost',
          'title'  : $('#editor-title').val(),
          //'date'   : new Date(), //we should set it ourselves
@@ -104,10 +110,63 @@ function editorInit() {
 
 }
 
+var editing_name = null;
+function getEditingPostName() {
+   var ret = editing_name;
+   editing_name = null;
+   return ret;
+}
+
 function editorOpen(name) {
    editorInit();
-   loadPage('Editor');
    tagCount = 0;
+   if (name != undefined) {
+      editing_name = name;
+      //getData('getBlogPosts', (posts)
+      console.log('getting: ' + name);
+      $.get('https://forty7.org/ira/blogEntry?page=' + name, (res) => {
+         //alert(res);
+         var good = null;
+         for (var i in g_posts) {
+            if (g_posts[i].date == name)
+               good = g_posts[i];
+         }
+         if (good == null)
+            alert("Error while trying to edit post: post doesn't exist");
+
+         var title = good.title;
+         var tags = good.tags;
+         var data = res;//.data;
+         $('#editor-title').val(title);
+         //$('#editor-tags').text(tags);
+         $('#display-tags').html('');
+         for (var i in tags) {
+            var tag = tags[i];
+            var rmTag = s('<a %s onclick="window.removeTag(%i)">x</a>',
+                          'class="remove-tag-btn"', tagCount);
+            //if (tags.val().length < 2) return;
+
+            var html = s('<span id="tag-%s" class="%s">%s%s</span>',
+                         tagCount, 'badge tag-span', /*tags.val()*/tag, rmTag);
+            //tags.val('');
+            addHtml('display-tags', html);
+            tagCount++;
+         }
+
+         /*var real_t = '';
+         for (var i in tags)
+            real_t += tags[i] + ' ';*/
+         //$('#editor-tags-input').val(real_t);
+
+         console.log(title + 'tags::::' + tags + ':::::::' + data);
+         //advancedEditor.updateContents(data);//window.quillText);
+         //$('#ql-editor-1 div').html(data);
+         //$('.author-advanced').html(data);
+         advancedEditor.setHTML(data);
+         //$('#editor-container'
+      });
+   }
+   loadPage('Editor');
 }
 
 function getBlogPosts(tag) {
@@ -136,6 +195,7 @@ function getBlogPosts(tag) {
    });
    //populate posts
    getData('getBlogPosts', (posts) => {
+      g_posts = posts;
       var blogPostsHtml = '';
 
       for (var i in posts) {

@@ -90,6 +90,16 @@ body {
    border:              0;
    background-color:    #53c7ed;
 }
+#delete-post-btn {
+   margin-left:         40px;
+   margin-bottom:       10px;
+   border-radius:       5%;
+   height:              30px;
+   width:               150px;
+   border:              0;
+   background-color:    red;
+}
+
 /*end editor*/
 
 #content-container {

@@ -1,4 +1,4 @@
-var serv_url = 'https://forty7.guru/ira/';
+var serv_url = 'https://forty7.org/ira/';
 
 //internal get request
 function _rawGet(url, callback) {

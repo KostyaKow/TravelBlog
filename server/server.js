@@ -149,7 +149,9 @@ app.get('/ira/serv', function(req, res) {
 
    }
    else if (query.action == 'uploadBlogPost') {
+      var origDate = query.originDate;
       var post = {
+         'modifDate': Date.now(),
          'title'  : query.title,
          'tags'   : JSON.parse(query.tags),
          'views'  : 0,
@@ -157,7 +159,9 @@ app.get('/ira/serv', function(req, res) {
       };
       var postData = JSON.stringify(post);
       var date = Date.now(); //new Date;
-      var fName = dataDir + 'post' + date;
+      if (origDate == null)
+         origDate = date;
+      var fName = dataDir + 'post' + origDate;
       fs.writeFile(fName, postData);
 
       console.log('Uploading new blog');
