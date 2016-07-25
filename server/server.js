@@ -152,7 +152,7 @@ app.get('/ira/serv', function(req, res) {
       var post = {
          'title'  : query.title,
          'tags'   : JSON.parse(query.tags),
-         'views'  : 0
+         'views'  : 0,
          'data'   : query.data
       };
       var postData = JSON.stringify(post);

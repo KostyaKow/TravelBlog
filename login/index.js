@@ -163,13 +163,14 @@ function getBlogPosts(tag) {
             title = title.substring(0, 20) + '...';
 
          var postHtml = s('<li><button postid="%s">edit</button>', date);
-         postHtml += s('%s %s', formattedDate, title);
+         postHtml += s('<i>%s</i> %s', formattedDate, title);
          for (var i in tags)
             postHtml += s('<span class="badge">%s</span>', tags[i]);
          postHtml += '</li>';
 
          blogPostsHtml += postHtml;
       }
+
       $('#blog-posts').html(blogPostsHtml);
       $('#blog-posts li').addClass('list-group-item');
       $('#blog-posts li button').addClass('edit-post-btn');

@@ -1,4 +1,4 @@
-var serv_url = 'http://forty7.guru/ira/'
+var serv_url = 'https://forty7.org/ira/'
 
 function openPost(name) {
    window.open(serv_url + 'blogEntry' + '?page=' + name);
