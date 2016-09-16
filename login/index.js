@@ -77,7 +77,9 @@ function editorInit() {
          'tags'   : JSON.stringify(tags),
          'data'   : window.quillText
       };
-      getData(uploadPost, (res) => console.log(res));
+      //getData(uploadPost, (res) => console.log(res));
+      postData(uploadPost, (res) => console.log(res));
+
    });
 
    var tags = $('#editor-tags-input');

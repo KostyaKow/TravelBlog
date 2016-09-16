@@ -2,19 +2,19 @@
 <head>
    <title>Ira's blog</title>
    <link rel='stylesheet' type='text/css' href='index.css'>
-   <script src='deps/jquery2.min.js'></script>
-   <script src='deps/angular.min.js'></script>
+   <script src='../do-not-move-this-files/deps/jquery2.min.js'></script>
+   <!-- <script src='../do-not-move-this-files/deps/angular.min.js'></script> -->
+   <script src='https://ajax.googleapis.com/ajax/libs/angularjs/1.5.8/angular.min.js'></script>
 
    <script>notInNode = true;</script>
    <script src='common.js'></script>
    <script src='index.js'></script>
 
-   <script src='deps/bootstrap.min.js'></script>
-   <link rel="stylesheet" href="deps/bootstrap.min.css">
-   <link rel="stylesheet" href="deps/bootstrap-theme.min.css">
+   <script src='../do-not-move-this-files/deps/bootstrap.min.js'></script>
+   <link rel="stylesheet" href="../do-not-move-this-files/deps/bootstrap.min.css">
+   <link rel="stylesheet" href="../do-not-move-this-files/deps/bootstrap-theme.min.css">
 </head>
 <body ng-app='iraBlog' ng-controller='iraBlog'>
-
 
    <ul id='topNav' class="nav nav-tabs">
      <li id='HomeLi' class="active"><a href="#">Home</a></li>
@@ -71,8 +71,8 @@
                         {{tag}}
                      </span>
                   </div>
-                  <span class='preview-data'>
-                     {{ x.data }}
+                  <span class='preview-data'  ng-bind-html='x.dataSafe' >
+                      <!-- {{ x.dataSafe }} -->
                   </span>
                   ...
                   <a class='read-more' target='_blank' href='blogEntry?page={{x["date"]}}'>

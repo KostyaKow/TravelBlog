@@ -122,6 +122,30 @@ app.get('/ira/blogEntry', function(req, res) {
    reqReturn(res, response);
 });
 
+app.post('/ira/serv', function(req, res) {
+   var query = onReq(req, res);
+   console.log('new blog post:::: ' + JSON.stringify(query));
+      var currDate = Date.now();
+      var post = {
+         'modifDate': currDate,
+         'title'  : query.title,
+         'tags'   : JSON.parse(query.tags),
+         'views'  : 0,
+         'data'   : query.data
+      };
+      var postData = JSON.stringify(post);
+
+      var origDate = query.originDate;
+      if (origDate == 'null')
+         origDate = currDate;
+
+      var fName = dataDir + 'post' + origDate;
+      fs.writeFile(fName, postData);
+
+      console.log('Uploading new blog');
+
+});
+
 app.get('/ira/serv', function(req, res) {
    var query = onReq(req, res);
 
@@ -149,18 +173,20 @@ app.get('/ira/serv', function(req, res) {
 
    }
    else if (query.action == 'uploadBlogPost') {
-      var origDate = query.originDate;
+      var currDate = Date.now();
       var post = {
-         'modifDate': Date.now(),
+         'modifDate': currDate,
          'title'  : query.title,
          'tags'   : JSON.parse(query.tags),
          'views'  : 0,
          'data'   : query.data
       };
       var postData = JSON.stringify(post);
-      var date = Date.now(); //new Date;
-      if (origDate == null)
-         origDate = date;
+
+      var origDate = query.originDate;
+      if (origDate == 'null')
+         origDate = currDate;
+
       var fName = dataDir + 'post' + origDate;
       fs.writeFile(fName, postData);
 
